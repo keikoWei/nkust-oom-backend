@@ -113,7 +113,5 @@ public class NewsDaoImpl implements NewsDao {
         Map<String, Object> map = new HashMap<>();
         map.put("newsId", newsId);
         namedParameterJdbcTemplate.update(sql, map);
-
     }
-
 }
