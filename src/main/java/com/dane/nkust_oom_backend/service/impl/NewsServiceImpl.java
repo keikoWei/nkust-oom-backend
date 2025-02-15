@@ -6,13 +6,18 @@ import com.dane.nkust_oom_backend.service.NewsService;
 import com.dane.nkust_oom_backend.dao.NewsDao;
 import com.dane.nkust_oom_backend.model.News;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
-
+import java.util.List;
 
 @Component
 public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsDao newsDao;
+
+    @Override
+    public List<News> getNewsList() {
+        return newsDao.getNewsList();
+    }
 
     @Override
     public News getNewsById(Integer newsId) {

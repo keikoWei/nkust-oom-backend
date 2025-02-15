@@ -14,7 +14,7 @@ import com.dane.nkust_oom_backend.model.News;
 import com.dane.nkust_oom_backend.service.NewsService;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
 import jakarta.validation.Valid;
-
+import java.util.List;
 
 @RestController
 public class NewsController {
@@ -22,9 +22,19 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    // 取得所有消息
+    @GetMapping("/news")
+    public ResponseEntity<List<News>> getNews() {
+
+        List<News> newsList = newsService.getNewsList();
+        
+        return ResponseEntity.status(HttpStatus.OK).body(newsList);
+    }
+
     // 取得單一消息
     @GetMapping("/news/{newsId}")
     public ResponseEntity<News> getNews(@PathVariable Integer newsId) {
+
         News news = newsService.getNewsById(newsId);
 
         if (news != null) {
@@ -37,6 +47,7 @@ public class NewsController {
     // 新增消息
     @PostMapping("/news")
     public ResponseEntity<News> createNews(@RequestBody @Valid NewsRequest newsRequest) {
+
         Integer newsId = newsService.createNews(newsRequest);
 
         News news = newsService.getNewsById(newsId);
@@ -69,6 +80,5 @@ public class NewsController {
         
         newsService.deleteNewsById(newsId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-
     }
 }

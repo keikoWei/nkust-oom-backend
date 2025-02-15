@@ -21,14 +21,28 @@ public class NewsDaoImpl implements NewsDao {
     
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Override
+    public List<News> getNewsList() {
+
+        String sql = 
+        "SELECT NEWS_ID, CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL " +
+        "FROM news";
+
+        Map<String, Object> map = new HashMap<>();
+
+        List<News> newsList = namedParameterJdbcTemplate.query(sql, map, new NewsRowMapper());
+
+        return newsList;
+    }
     
     @Override
      public News getNewsById(Integer newsId) {
         
         String sql = 
-        "SELECT NEWS_ID, CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL" +
-        "FROM news" +
-        "WHERE NEWS_ID= :newsId";
+        "SELECT NEWS_ID, CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL " +
+        "FROM news " +
+        "WHERE NEWS_ID = :newsId";
 
         Map<String, Object> map = new HashMap<>();
         map.put("newsId", newsId);
@@ -46,7 +60,7 @@ public class NewsDaoImpl implements NewsDao {
     public Integer createNews(NewsRequest newsRequest) {
 
         String sql = 
-        "INSERT INTO news (CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL)" +
+        "INSERT INTO news (CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL) " +
         "VALUES (:categoryId, :title, :content, :publishDate, :modifyDate, :author, :enable, :imageUrl)";
 
         Map<String, Object> map = new HashMap<>();
@@ -74,7 +88,7 @@ public class NewsDaoImpl implements NewsDao {
     public void updateNews(Integer newsId, NewsRequest newsRequest) {
         
         String sql = 
-        "UPDATE news SET CATEGORY_ID = :categoryId, TITLE = :title, CONTENT = :content, MODIFY_DATE = :modifyDate, AUTHOR = :author, ENABLE = :enable, IMAGE_URL = :imageUrl" +
+        "UPDATE news SET CATEGORY_ID = :categoryId, TITLE = :title, CONTENT = :content, MODIFY_DATE = :modifyDate, AUTHOR = :author, ENABLE = :enable, IMAGE_URL = :imageUrl " +
         "WHERE NEWS_ID = :newsId";
 
         Map<String, Object> map = new HashMap<>();
@@ -90,6 +104,16 @@ public class NewsDaoImpl implements NewsDao {
         map.put("modifyDate", new Date());
 
         namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public void deleteNewsById(Integer newsId) {
+
+        String sql = "DELETE FROM news WHERE NEWS_ID = :newsId";
+        Map<String, Object> map = new HashMap<>();
+        map.put("newsId", newsId);
+        namedParameterJdbcTemplate.update(sql, map);
+
     }
 
 }
