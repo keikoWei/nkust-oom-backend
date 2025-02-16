@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class News {
 
-    private Integer newsId;         // 唯一識別碼
+    private Long newsId;         // 唯一識別碼
     private Integer categoryId;     // 類別
     private String title;           // 標題
     private String content;         // 內容
@@ -18,11 +18,11 @@ public class News {
     
     // Getter 和 Setter 方法
 
-    public Integer getNewsId() {
+    public Long getNewsId() {
         return newsId;
     }
 
-    public void setNewsId(Integer newsId) {
+    public void setNewsId(Long newsId) {
         this.newsId = newsId;
     }
 

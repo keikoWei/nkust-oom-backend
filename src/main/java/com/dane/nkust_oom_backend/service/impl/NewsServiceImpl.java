@@ -7,6 +7,7 @@ import com.dane.nkust_oom_backend.dao.NewsDao;
 import com.dane.nkust_oom_backend.model.News;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
 import java.util.List;
+import java.lang.Long;
 
 @Component
 public class NewsServiceImpl implements NewsService {
@@ -20,22 +21,22 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News getNewsById(Integer newsId) {
+    public News getNewsById(Long newsId) {
         return newsDao.getNewsById(newsId);
     }
 
     @Override
-    public Integer createNews(NewsRequest newsRequest) {
+    public Long createNews(NewsRequest newsRequest) {
         return newsDao.createNews(newsRequest);
     }
 
     @Override
-    public void updateNews(Integer newsId, NewsRequest newsRequest) {
+    public void updateNews(Long newsId, NewsRequest newsRequest) {
         newsDao.updateNews(newsId, newsRequest);
     }
 
     @Override
-    public void deleteNewsById(Integer newsId) {
+    public void deleteNewsById(Long newsId) {
         newsDao.deleteNewsById(newsId);
     }
 }

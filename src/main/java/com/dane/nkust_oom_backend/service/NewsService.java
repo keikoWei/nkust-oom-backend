@@ -8,12 +8,12 @@ public interface NewsService {
 
     List<News> getNewsList();
 
-    News getNewsById(Integer newsId);
+    News getNewsById(Long newsId);
 
-    Integer createNews(NewsRequest newsRequest);
+    Long createNews(NewsRequest newsRequest);
 
-    void updateNews(Integer newsId, NewsRequest newsRequest);
+    void updateNews(Long newsId, NewsRequest newsRequest);
 
-    void deleteNewsById(Integer newsId);
+    void deleteNewsById(Long newsId);
     
 }

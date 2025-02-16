@@ -12,7 +12,7 @@ public class NewsRowMapper implements RowMapper<News> {
 
         News news = new News();
 
-        news.setNewsId(resultSet.getInt("NEWS_ID"));
+        news.setNewsId(resultSet.getLong("NEWS_ID"));
         news.setCategoryId(resultSet.getInt("CATEGORY_ID"));
         news.setTitle(resultSet.getString("TITLE"));
         news.setContent(resultSet.getString("CONTENT"));

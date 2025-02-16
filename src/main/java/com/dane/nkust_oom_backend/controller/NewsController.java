@@ -33,7 +33,7 @@ public class NewsController {
 
     // 取得單一消息
     @GetMapping("/news/{newsId}")
-    public ResponseEntity<News> getNews(@PathVariable Integer newsId) {
+    public ResponseEntity<News> getNews(@PathVariable Long newsId) {
 
         News news = newsService.getNewsById(newsId);
 
@@ -48,7 +48,7 @@ public class NewsController {
     @PostMapping("/news")
     public ResponseEntity<News> createNews(@RequestBody @Valid NewsRequest newsRequest) {
 
-        Integer newsId = newsService.createNews(newsRequest);
+        Long newsId = newsService.createNews(newsRequest);
 
         News news = newsService.getNewsById(newsId);
 
@@ -58,7 +58,7 @@ public class NewsController {
 
     // 更新消息
     @PutMapping("/news/{newsId}")
-    public ResponseEntity<News> updateNews(@PathVariable Integer newsId, @RequestBody @Valid NewsRequest newsRequest) {
+    public ResponseEntity<News> updateNews(@PathVariable Long newsId, @RequestBody @Valid NewsRequest newsRequest) {
 
         // 檢查消息是否存在
         News news = newsService.getNewsById(newsId);
@@ -76,7 +76,7 @@ public class NewsController {
 
     // 刪除消息
     @DeleteMapping("/news/{newsId}")
-    public ResponseEntity<News> deleteNews(@PathVariable Integer newsId) {
+    public ResponseEntity<News> deleteNews(@PathVariable Long newsId) {
         
         newsService.deleteNewsById(newsId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
