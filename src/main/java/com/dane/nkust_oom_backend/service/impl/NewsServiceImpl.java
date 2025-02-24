@@ -6,6 +6,7 @@ import com.dane.nkust_oom_backend.service.NewsService;
 import com.dane.nkust_oom_backend.dao.NewsDao;
 import com.dane.nkust_oom_backend.model.News;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
+import com.dane.nkust_oom_backend.dto.NewsQueryParams;
 import java.util.List;
 import java.lang.Long;
 
@@ -16,8 +17,8 @@ public class NewsServiceImpl implements NewsService {
     private NewsDao newsDao;
 
     @Override
-    public List<News> getNewsList() {
-        return newsDao.getNewsList();
+    public List<News> getNewsList(NewsQueryParams newsQueryParams) {
+        return newsDao.getNewsList(newsQueryParams);
     }
 
     @Override

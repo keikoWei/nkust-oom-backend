@@ -15,6 +15,9 @@ import com.dane.nkust_oom_backend.service.NewsService;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
 import jakarta.validation.Valid;
 import java.util.List;
+import com.dane.nkust_oom_backend.dto.NewsQueryParams;
+import com.dane.nkust_oom_backend.constant.NewsCategory;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class NewsController {
@@ -24,9 +27,16 @@ public class NewsController {
 
     // 取得所有消息
     @GetMapping("/news")
-    public ResponseEntity<List<News>> getNews() {
+    public ResponseEntity<List<News>> getNews(
+        @RequestParam(required = false) NewsCategory category,
+        @RequestParam(required = false) String search
+    ) {
 
-        List<News> newsList = newsService.getNewsList();
+        NewsQueryParams newsQueryParams = new NewsQueryParams();
+        newsQueryParams.setCategory(category);
+        newsQueryParams.setSearch(search);
+
+        List<News> newsList = newsService.getNewsList(newsQueryParams);
         
         return ResponseEntity.status(HttpStatus.OK).body(newsList);
     }

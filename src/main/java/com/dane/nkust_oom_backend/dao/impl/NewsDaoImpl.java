@@ -7,6 +7,7 @@ import com.dane.nkust_oom_backend.dao.NewsDao;
 import com.dane.nkust_oom_backend.model.News;
 import com.dane.nkust_oom_backend.rowmapper.NewsRowMapper;
 import com.dane.nkust_oom_backend.dto.NewsRequest;
+import com.dane.nkust_oom_backend.dto.NewsQueryParams;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +49,26 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public List<News> getNewsList() {
+    public List<News> getNewsList(NewsQueryParams newsQueryParams) {
 
         String sql = 
         "SELECT NEWS_ID, CATEGORY_ID, TITLE, CONTENT, PUBLISH_DATE, MODIFY_DATE, AUTHOR, ENABLE, IMAGE_URL " +
-        "FROM news";
+        "FROM news " +
+        "WHERE 1=1";
 
         Map<String, Object> map = new HashMap<>();
+
+        // 如果分類不為空，則加入分類條件
+        if (newsQueryParams.getCategory() != null) {
+            sql += " AND CATEGORY_ID = :categoryId";
+            map.put("categoryId", newsQueryParams.getCategory().toString());
+        }
+
+        // 如果搜尋不為空，則加入搜尋條件
+        if (newsQueryParams.getSearch() != null) {
+            sql += " AND TITLE LIKE :search";
+            map.put("search", "%" + newsQueryParams.getSearch() + "%");
+        }
 
         List<News> newsList = namedParameterJdbcTemplate.query(sql, map, new NewsRowMapper());
 
