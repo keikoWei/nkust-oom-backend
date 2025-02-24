@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class MarqueeAds {
 
-    private Integer adId;
-    private String imageUrl;
-    private String linkUrl;
-    private Integer displayOrder;
-    private Boolean enable;
-    private Date publishDate;
-    private Date modifyDate;
+    private Integer adId;           // 廣告ID
+    private String imageUrl;        // 圖片URL
+    private String linkUrl;         // 連結URL
+    private Integer displayOrder;   // 顯示順序
+    private Boolean enable;         // 是否啟用
+    private Date publishDate;       // 發佈日期
+    private Date modifyDate;        // 修改日期
 
     public Integer getAdId() {
         return adId;
