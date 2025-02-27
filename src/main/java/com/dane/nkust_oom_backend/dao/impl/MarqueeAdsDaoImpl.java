@@ -83,6 +83,7 @@ public class MarqueeAdsDaoImpl implements MarqueeAdsDao {
         "WHERE AD_ID = :adId";
 
         Map<String, Object> map = new HashMap<>();
+        map.put("adId", marqueeAdsId);
         map.put("imageUrl", marqueeAdsRequest.getImageUrl());
         map.put("linkUrl", marqueeAdsRequest.getLinkUrl());
         map.put("displayOrder", marqueeAdsRequest.getDisplayOrder());

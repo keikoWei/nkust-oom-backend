@@ -64,7 +64,7 @@ public class MarqueeAdsController {
         }
 
         marqueeAdsService.updateMarqueeAds(marqueeAdsId, marqueeAdsRequest);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK).body(marqueeAdsService.getMarqueeAdsById(marqueeAdsId));
     }       
 
     // 刪除跑馬燈廣告
