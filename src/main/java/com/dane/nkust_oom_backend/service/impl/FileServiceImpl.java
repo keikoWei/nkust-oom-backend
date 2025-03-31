@@ -26,9 +26,12 @@ public class FileServiceImpl implements FileService {
     // 支援的文件類型
     private static final List<String> SUPPORTED_FORMATS = Arrays.asList(
             "application/pdf",                     // PDF
-            "application/vnd.oasis.opendocument.text" // ODT
+            "application/vnd.oasis.opendocument.text", // ODT 標準 MIME 類型
+            "application/x-vnd.oasis.opendocument.text", // ODT 替代 MIME 類型
+            "application/vnd.oasis.opendocument.text.odt", // ODT 替代 MIME 類型
+            "application/odt"                      // ODT 簡化 MIME 類型
     );
-    
+     
     // 文件上傳目錄
     @Value("${file.upload.dir:uploads}")
     private String uploadDir;
@@ -58,14 +61,7 @@ public class FileServiceImpl implements FileService {
                 return response;
             }
             
-            // 檢查文件類型
-            String contentType = file.getContentType();
-            if (!isSupportedFileType(contentType)) {
-                Map<String, Object> response = new HashMap<>();
-                response.put("success", false);
-                response.put("error", "不支援的文件格式，僅支援 PDF 和 ODT 格式");
-                return response;
-            }
+            
             
             String originalFilename = file.getOriginalFilename();
             if (originalFilename == null || originalFilename.trim().isEmpty()) {
@@ -112,7 +108,6 @@ public class FileServiceImpl implements FileService {
             response.put("fileId", newsFile.getFileId());
             response.put("newsId", newsId);
             response.put("filename", originalFilename);
-            response.put("contentType", contentType);
             response.put("path", fileUrl);
             response.put("uploadDate", newsFile.getUploadDate());
             return response;

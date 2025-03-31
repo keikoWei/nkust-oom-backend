@@ -12,7 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:9000"); // 允許的前端域名
+        config.addAllowedOrigin("http://localhost"); // 允許的前端域名
         config.addAllowedMethod("*"); // 允許的請求方法 (GET, POST, PUT, DELETE, etc.)
         config.addAllowedHeader("*"); // 允許的請求頭
         config.setAllowCredentials(true); // 是否允許攜帶 Cookie
