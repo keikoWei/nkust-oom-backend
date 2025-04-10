@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/imgur")
+@RequestMapping("/api/imgur")
 public class ImgurController {
 
     private static final Logger logger = LoggerFactory.getLogger(ImgurController.class);

@@ -15,8 +15,9 @@ import jakarta.validation.Valid;
 import com.dane.nkust_oom_backend.model.MarqueeAds;
 import com.dane.nkust_oom_backend.service.MarqueeAdsService;
 import com.dane.nkust_oom_backend.dto.MarqueeAdsRequest;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
+@RequestMapping("/api")
 public class MarqueeAdsController {
 
     @Autowired

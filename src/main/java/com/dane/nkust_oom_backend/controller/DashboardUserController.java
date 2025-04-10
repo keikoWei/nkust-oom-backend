@@ -10,8 +10,10 @@ import com.dane.nkust_oom_backend.model.DashboardUser;
 import com.dane.nkust_oom_backend.dto.DashboardUserLoginRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("/api")
 public class DashboardUserController {
 
     @Autowired

@@ -18,8 +18,10 @@ import java.util.List;
 import com.dane.nkust_oom_backend.dto.NewsQueryParams;
 import com.dane.nkust_oom_backend.constant.NewsCategory;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@RestController 
+@RequestMapping("/api")
 public class NewsController {
 
     @Autowired
